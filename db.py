@@ -13,19 +13,19 @@ class Database:
         rows = self.cur.fetchall()
         return rows
 
-        def insert(self, part, customer, retailer, price):
-            self.cur.execute("INSERT INTO parts VALUES (NULL, ?, ?, ?, ?)",
-                            (part, customer, retailer, price))
-            self.db_connection.commit()
+    def insert(self, part, customer, retailer, price):
+        self.cur.execute("INSERT INTO parts VALUES (NULL, ?, ?, ?, ?)",
+                        (part, customer, retailer, price))
+        self.db_connection.commit()
 
-        def remove(self, id):
-            self.cur.execute("DELETE FROM parts WHERE id=?", (id,))
-            self.db_connection.commit()
+    def remove(self, id):
+        self.cur.execute("DELETE FROM parts WHERE id=?", (id,))
+        self.db_connection.commit()
 
-        def update(self, id, part, customer, retailer, price):
-            self.cur.execute("UPDATE parts SET part = ?, customer = ?, retailer = ?, price = ? WHERE id = ?",
-                            (part, customer, retailer, price, id))
-            self.db_connection.commit()
+    def update(self, id, part, customer, retailer, price):
+        self.cur.execute("UPDATE parts SET part = ?, customer = ?, retailer = ?, price = ? WHERE id = ?",
+                        (part, customer, retailer, price, id))
+        self.db_connection.commit()
 
-        def __del__(self):
-            self.db_connection.close()
+    def __del__(self):
+        self.db_connection.close()
