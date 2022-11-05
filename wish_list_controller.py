@@ -11,6 +11,7 @@ db = Database('store.db')
 class Application(tk.Frame):
     # do something
     def __init__(self, master):
+        super().__init__(master)
         self.master = master
         master.title('Wish list Manager')
         # width and height
