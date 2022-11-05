@@ -9,22 +9,22 @@ class Database:
         self.db_connection.commit()
 
     def fetch(self):
-        self.cur.execute("SELECT * FROM parts")
+        self.cur.execute("SELECT * FROM wish_list_items")
         rows = self.cur.fetchall()
         return rows
 
-    def insert(self, part, customer, retailer, price):
-        self.cur.execute("INSERT INTO parts VALUES (NULL, ?, ?, ?, ?)",
-                        (part, customer, retailer, price))
+    def insert(self, list_name, brand_name, retailer, price):
+        self.cur.execute("INSERT INTO wish_list_items VALUES (NULL, ?, ?, ?, ?)",
+                        (list_name, brand_name, retailer, price))
         self.db_connection.commit()
 
     def remove(self, id):
-        self.cur.execute("DELETE FROM parts WHERE id=?", (id,))
+        self.cur.execute("DELETE FROM wish_list_items WHERE id=?", (id,))
         self.db_connection.commit()
 
-    def update(self, id, part, customer, retailer, price):
-        self.cur.execute("UPDATE parts SET part = ?, customer = ?, retailer = ?, price = ? WHERE id = ?",
-                        (part, customer, retailer, price, id))
+    def update(self, id, list_name, brand_name, retailer, price):
+        self.cur.execute("UPDATE wish_list_items SET list_name = ?, brand_name = ?, retailer = ?, price = ? WHERE id = ?",
+                        (list_name, brand_name, retailer, price, id))
         self.db_connection.commit()
 
     def __del__(self):
